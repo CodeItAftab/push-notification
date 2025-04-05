@@ -19,13 +19,16 @@ function NotificationForm() {
     console.log("Notification Data:", notificationData);
     // Here you would typically send the data to your backend or service
     try {
-      const response = await fetch("http://localhost:3000/send-notification", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(notificationData),
-      });
+      const response = await fetch(
+        `${import.meta.VITE_SERVER_URL}/send-notification`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(notificationData),
+        }
+      );
 
       const data = await response.json();
       console.log("Response from server:", data);
