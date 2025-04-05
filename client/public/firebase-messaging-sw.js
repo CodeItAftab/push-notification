@@ -7,7 +7,12 @@ importScripts(
 );
 
 const firebaseConfig = {
+  apiKey: "AIzaSyCDcieVMZwjEhPKYPYwMkNNgW2qpi0LflU",
+  authDomain: "notification-495f5.firebaseapp.com",
+  projectId: "notification-495f5",
+  storageBucket: "notification-495f5.firebasestorage.app",
   messagingSenderId: "629777589006",
+  appId: "1:629777589006:web:a9e02dc2d4af3096dced5f",
 };
 
 firebase.initializeApp(firebaseConfig);
