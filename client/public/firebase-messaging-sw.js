@@ -6,15 +6,14 @@ importScripts(
   "https://www.gstatic.com/firebasejs/10.13.2/firebase-messaging-compat.js"
 );
 
-const firebaseConfig = {
-  apiKey: "AIzaSyCDcieVMZwjEhPKYPYwMkNNgW2qpi0LflU",
-  authDomain: "notification-495f5.firebaseapp.com",
-  projectId: "notification-495f5",
-  storageBucket: "notification-495f5.firebasestorage.app",
-  messagingSenderId: "629777589006",
-  appId: "1:629777589006:web:a9e02dc2d4af3096dced5f",
+export const firebaseConfig = {
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
 };
-
 firebase.initializeApp(firebaseConfig);
 
 const messaging = firebase.messaging();
@@ -25,7 +24,7 @@ messaging.onBackgroundMessage((payload) => {
   const notificationTitle = payload.data.title || "Default Title";
   const notificationOptions = {
     body: payload.data.body || "Default body text",
-    icon: payload.data.icon || "/firebase-logo.png",
+    icon: payload.data.icon || "vite.svg",
     image: payload.data.image || "/custom-image.png",
     actions: [
       {
@@ -33,6 +32,8 @@ messaging.onBackgroundMessage((payload) => {
         title: "View Details",
         type: "text",
         icon: "/action-icon.png", // Optional icon for the button
+        // send output to the server
+        url: payload.data.click_action || "/",
       },
       {
         action: "dismiss",
