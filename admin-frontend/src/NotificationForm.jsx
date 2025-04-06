@@ -20,6 +20,7 @@ function NotificationForm() {
     // Here you would typically send the data to your backend or service
     try {
       const response = await fetch(
+        // "http://localhost:8080/send-notification",
         "https://push-notification-xo5f.onrender.com/send-notification",
         {
           method: "POST",
